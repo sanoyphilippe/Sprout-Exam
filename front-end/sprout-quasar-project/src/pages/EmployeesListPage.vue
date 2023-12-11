@@ -1,7 +1,7 @@
 <template>
   <q-page class="column items-center justify-evenly">
     <div class="row">
-      <q-btn color="primary" label="Primary" > Add Employee </q-btn>
+      <q-btn color="primary" label="Add Employee" />
     </div>
     <div class="row">
       <q-card class="col" v-for="employee in employees" :key="employee.id">
