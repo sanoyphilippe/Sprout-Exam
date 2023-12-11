@@ -12,3 +12,12 @@ See: https://fastapi.tiangolo.com/
 The front-end is built using the Quasar Framework with Vue3
 
 See: https://quasar.dev/
+
+# Improvements, Technical Debt
+
+### Front-end Improvements/Issues
+Currently the front-end only has the Login, Delete Employee, and Get List of Employees feature. There are several things to still finish
+for the front-end side as it has not been finished. The base scaffolding and folder structure are all completely done and setup thanks to the usage of Quasar Framework.
+
+### Back-end
+Back-end is fully functional and all APIs should be working correctly to Add, Update, Delete employees as well as get specific employee and get all employees list.
