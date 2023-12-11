@@ -3,15 +3,15 @@ version: '3'
 services:
   db:
     image: mongo:latest
-    container_name: mongo
+    container_name: mongo-server
     env_file:
-      - .env
+      - ./.env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      # MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      # MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     volumes:
-      - mongo:/data/db
+      - mongo-server:/data/db
     ports:
       - '6000:27017'
   sprout-employee-api:
@@ -24,4 +24,4 @@ services:
     volumes:
       - .:/app
 volumes:
-  mongo:
+  mongo-server:

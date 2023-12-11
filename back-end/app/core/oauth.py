@@ -3,9 +3,7 @@ from typing import List
 from fastapi import Depends, HTTPException, status
 from fastapi_jwt_auth import AuthJWT
 from pydantic import BaseModel
-
-from core.config import settings
-
+from app.core.config import settings
 
 class Settings(BaseModel):
     authjwt_algorithm: str = settings.JWT_ALGORITHM
@@ -18,7 +16,6 @@ class Settings(BaseModel):
         settings.JWT_PUBLIC_KEY).decode('utf-8')
     authjwt_private_key: str = base64.b64decode(
         settings.JWT_PRIVATE_KEY).decode('utf-8')
-
 
 @AuthJWT.load_config
 def get_config():
@@ -35,11 +32,11 @@ def require_user(Authorize: AuthJWT = Depends()):
         Authorize.jwt_required()
         username = Authorize.get_jwt_subject()
 
-        if username != settings.SUPER_ADMIN_USERNAME:
-            raise UserNotAdmin('User is not an admin')
-
         if not username:
             raise UserNotFound('User no longer exist')
+
+        if username != settings.SUPER_ADMIN_USERNAME:
+            raise UserNotAdmin('User is not an admin')
 
     except Exception as e:
         error = e.__class__.__name__

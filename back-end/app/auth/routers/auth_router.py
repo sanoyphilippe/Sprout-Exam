@@ -1,12 +1,10 @@
-from datetime import datetime, timedelta
-from bson.objectid import ObjectId
+from datetime import timedelta
 from fastapi import APIRouter, Response, status, Depends, HTTPException
 
-from app import oauth2
-from authorization.schemas.auth_schema import LoginUserSchema
-from core import utils
-from authorization.oauth2 import AuthJWT
-from core.config import settings
+from app.auth.schemas.auth_schema import LoginUserSchema
+from app.core import utils
+from app.core.oauth import AuthJWT, require_user
+from app.core.config import settings
 
 
 router = APIRouter()
@@ -78,7 +76,7 @@ def refresh_token(response: Response, Authorize: AuthJWT = Depends()):
 
 # [...] logout user
 @router.get('/logout', status_code=status.HTTP_200_OK)
-def logout(response: Response, Authorize: AuthJWT = Depends(), user_id: str = Depends(oauth2.require_user)):
+def logout(response: Response, Authorize: AuthJWT = Depends(), user_id: str = Depends(require_user)):
     Authorize.unset_jwt_cookies()
     response.set_cookie('logged_in', '', -1)
 

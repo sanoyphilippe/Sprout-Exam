@@ -1,40 +1,52 @@
 from datetime import datetime
-from typing import List
-from pydantic import BaseModel, EmailStr, constr
+from typing import Literal
+from enum import IntEnum
+from pydantic import BaseModel, EmailStr
 from bson.objectid import ObjectId
 
+class EmployeeTypeEnum(IntEnum):
+    REGULAR = 0
+    CONTRACTUAL = 1
 
 class EmployeeBaseSchema(BaseModel):
     first_name: str
     last_name: str
-    email: str
-    emp_type: int
-    number_of_leaves: int | None = None
-    benefits: str | None = None
-    contract_end_date: datetime | None = None
-    project: str | None = None
+    email: EmailStr
+    emp_type: EmployeeTypeEnum
+
+    class Config:
+        orm_mode = True
+        json_encoders = {ObjectId: str}
+
+class CreateRegularEmployeeSchema(EmployeeBaseSchema):
+    emp_type: Literal[EmployeeTypeEnum.REGULAR]
+    number_of_leaves: int
+    benefits: str
     created_at: datetime | None = None
     updated_at: datetime | None = None
 
-    class Config:
-        orm_mode = True
-        json_encoders = {ObjectId: str}
+class CreateContractualEmployeeSchema(EmployeeBaseSchema):
+    emp_type: Literal[EmployeeTypeEnum.CONTRACTUAL]
+    contract_end_date: datetime
+    project: str
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
 
-class CreateEmployeeSchema(EmployeeBaseSchema):
-    password: constr(min_length=8)
-    passwordConfirm: str
-    verified: bool = False
-
-class UpdateEmployeeSchema(BaseModel):
-    first_name: str
-    last_name: str
-    email: str
-    emp_type: int
-    number_of_leaves: int | None = None
-    benefits: str | None = None
-    contract_end_date: datetime | None = None
-    project: str | None = None
+class UpdateRegularEmployeeSchema(EmployeeBaseSchema):
+    emp_type: Literal[EmployeeTypeEnum.REGULAR]
+    number_of_leaves: int
+    benefits: str
 
     class Config:
         orm_mode = True
         json_encoders = {ObjectId: str}
+
+class UpdateContractualEmployeeSchema(EmployeeBaseSchema):
+    emp_type: Literal[EmployeeTypeEnum.CONTRACTUAL]
+    contract_end_date: datetime
+    project: str
+
+    class Config:
+        orm_mode = True
+        json_encoders = {ObjectId: str}
+

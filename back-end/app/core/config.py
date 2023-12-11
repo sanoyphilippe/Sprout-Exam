@@ -3,6 +3,8 @@ from pydantic import BaseSettings
 class Settings(BaseSettings):
     DATABASE_URL: str
     MONGO_INITDB_DATABASE: str
+    # MONGO_INITDB_ROOT_USERNAME: str
+    # MONGO_INITDB_ROOT_PASSWORD: str
 
     SUPER_ADMIN_USERNAME: str
     SUPER_ADMIN_PASSWORD: str
