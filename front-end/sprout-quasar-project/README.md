@@ -2,40 +2,26 @@
 
 Sprout Solutions Exam
 
+## prerequisites
+Must have npm installed: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+Must have docker installed: https://docs.docker.com/engine/install/
+
 ## Install the dependencies
 ```bash
-yarn
-# or
 npm install
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-quasar dev
+npx quasar dev
 ```
 
-
-### Lint the files
+### Run Docker
 ```bash
-yarn lint
-# or
-npm run lint
-```
-
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-
-### Build the app for production
-```bash
-quasar build
+docker compose up --build
 ```
 
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
+Currently working features are Login, Delete Employee, Get List of all employees
