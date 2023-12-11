@@ -6,8 +6,11 @@ Please see individual readme sections for each folder of the back-end and front-
 
 # Back-end
 The back-end is built using the FastAPI framework utilizing python as the programming language.
-Also utilizing MongoDB for the DB storage.
+
 See: https://fastapi.tiangolo.com/
+
+Also utilizing MongoDB for the DB storage.
+
 
 # Front-end Stack
 The front-end is built using the Quasar Framework with Vue3 and Typescript/javascript
