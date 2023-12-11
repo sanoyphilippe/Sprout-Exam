@@ -12,13 +12,13 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Sprout Solutions
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
-
+<!--
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -37,7 +37,7 @@
           v-bind="link"
         />
       </q-list>
-    </q-drawer>
+    </q-drawer> -->
 
     <q-page-container>
       <router-view />
@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+// import EssentialLink from 'components/EssentialLink.vue';
 
 const linksList = [
   {
@@ -98,7 +98,6 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
   },
 
   setup () {

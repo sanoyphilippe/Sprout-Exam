@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  sprout-front-end:
+    build: .
+    command: sh -c "nginx -g 'daemon off;'"
+    env_file:
+      - .env
+    ports:
+      - 9000:80
+    volumes:
+      - .:/app

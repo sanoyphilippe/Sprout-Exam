@@ -1,5 +1,16 @@
 <template>
   <q-page class="row items-center justify-evenly">
+    <q-btn
+      @click="$q.notify('My message')"
+      color="primary"
+      label="Show a notification"
+    />
+
+    <q-btn
+      @click="showNotification"
+      color="primary"
+      label="Show another notification"
+    />
     <example-component
       title="Example component"
       active
@@ -10,6 +21,7 @@
 </template>
 
 <script lang="ts">
+import { useQuasar } from 'quasar'
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
 import { defineComponent, ref } from 'vue';
@@ -18,6 +30,12 @@ export default defineComponent({
   name: 'IndexPage',
   components: { ExampleComponent },
   setup () {
+    const $q = useQuasar()
+
+    function showNotification () {
+      $q.notify('Some other message')
+    }
+
     const todos = ref<Todo[]>([
       {
         id: 1,
@@ -43,7 +61,7 @@ export default defineComponent({
     const meta = ref<Meta>({
       totalCount: 1200
     });
-    return { todos, meta };
+    return { todos, meta, showNotification };
   }
 });
 </script>
